@@ -9,9 +9,9 @@
 ## General info
 
 ### Technologies
--JavaScript
--BootStrap 5
--HTML
+* JavaScript
+* BootStrap 5
+* HTML
 
 ### Functionality
 
@@ -27,9 +27,9 @@ This web page can also show users other methods to search: by Mealtype, or Cook 
 ## What I learned
 In this project, I learned about:
 
--rendering elements based on objects
--dynamic property access and setting properties dynamically
-- how to add filtering functionality
+* rendering elements based on objects
+* dynamic property access and setting properties dynamically
+* how to add filtering functionality
 
 
 ## Screen Shots
