@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0" >
+    <title>My Recipe Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles/app.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous" defer></script>
+    <script src="assets/scripts/app.js" defer></script>
+</head>
+<body>
+    <section id="user-input" class="formCard">
+        <form class="row g-3">
+            <div class="col-md-12">
+              <label for="recipeTitle" class="form-label">Recipe Title :</label>
+              <input type="text" class="form-control" id="recipeTitle" required>
+            </div>
+            <div class="col-md-4">
+              <label for="mealType" class="form-label">Meal Type :</label>
+              <select name="mealType" id="mealType" class="form-control">
+                  <option value="other">Other</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+            </select>
+            </div>
+            <div class="col-4">
+              <label for="prepTime" class="form-label">Prep Time :</label>
+              <input type="number" class="form-control" id="prepTime" placeholder="time in minutes">
+            </div>
+            <div class="col-4">
+              <label for="cookTime" class="form-label">Cook Time :</label>
+              <input type="number" class="form-control" id="cookTime" placeholder="time in minutes">
+            </div>
+            <div class="col-md-6">
+                <label for="ingredients" class="form-label">Ingredients :</label>
+                <textarea name="ingredients" class="form-control" id="ingredients"placeholder="separate ingredients with a comma ..."></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="instructions" class="form-label">Instructions :</label>
+              <textarea name="instructions" class="form-control" id="instructions"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="customTitle" class="form-label">Custom Title :</label>
+                <input type="text" class="form-control" id="customTitle" required>
+            </div>
+            <div class="col-md-6">
+                <label for="customInfo" class="form-label">Custom Info :</label>
+                <input type="text" class="form-control" id="customInfo" required>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" id="addNewRecipe">Add New Recipe</button>
+            </div>
+        </form>
+    </section>
+          <section class="formCard row g-3">
+            <label for="filter-by" >Filter by: 
+                <select id="search">
+                    <option value="select">Select</option>
+                    <option value="title" id="selectTitle">Title</option>
+                    <option value="cookTime">Cook Time</option>
+                    <option value="mealType">Meal Type</option>
+                </select>
+            </label>
+            <div class="filter-title invisible" id= 'title'>
+                <input id="filter-title" type="text" placeholder="Enter Recipe title" class="col-12 form-control">
+            </div>
+            <div class="filter-cookTime col-6 invisible">
+                <select name="filter-cookTime" id="filter-cookTime" class="form-control ">
+                    <option value="under30">under 30 mins</option>
+                    <option value="under45">Under 45 mins</option>
+                    <option value="under1h">under 1 hour</option>
+                    <option value="under2h">under 2 hours</option>
+              </select>
+            </div>
+            </div>
+            <div class="filter-mealType invisible">
+                <select name="mealType"  class="form-control">
+                    <option value="otherFilter">Other</option>
+                    <option value="vegetarianFilter">Vegetarian</option>
+                    <option value="veganFilter">Vegan</option>
+                    <option value="breakfastFilter">Breakfast</option>
+                    <option value="lunchFilter">Lunch</option>
+                    <option value="dinnerFilter">Dinner</option>
+                </select>
+            </div>
+            <button class="btn btn-primary col-2" type="submit">Search</button>
+          </section>
+          <ul id="recipe-list" class="renderedRecipes"></ul>
+</body>
+</html>

@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    font-family: Bahnschrift;
+    font-weight: 700;
+}
+
+.formCard {
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    background-color: lightblue;
+    width: 50rem;
+    max-width: 90%;
+    margin: 2rem auto;
+}
+input {
+    border: none;
+    border-bottom: 2px solid darkgray;
+    margin: 1rem 0;
+
+}
+
+
+.list-item {
+    display: flex;
+}
+
+#mealType {
+    margin-top: 1rem;
+}
+
+.preview-titles {
+    margin-left: 1rem;
+    display: flex;
+}
+
+
+.invisible {
+    display: none;
+}
+.visible {
+    display: block;
+}
+.recipe {
+    margin: 1px , 0;
+    border: 1px solid black;
+}
+.renderedRecipes {
+    list-style: none;
+}
+
+ .renderedRecipes li{
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    margin: 2rem auto;
+    max-width: 90%;
+    margin: 2rem auto;
+}
+
+.titleCat {
+    background-color: purple;
+    color: white;
+}
+
+
+
