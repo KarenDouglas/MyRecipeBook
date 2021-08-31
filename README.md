@@ -15,13 +15,13 @@
 
 ### Functionality
 
-#### 1. Adds Recipes
+#### * Adds Recipes
 My Recipe Book allows users to add recipes with basic details : 'Title', 'Cook Time', 'Prep Time',' Meal Type', 'Instructions', 'Ingredients' and a 'Custom Title' .
 
-#### 2. Searches for Recipes By Title
+#### * Searches for Recipes By Title
 This app also allows users to search through their recipes by title.
 
-#### 3. Shows Other methods for searching
+#### * Shows Other methods for searching
 This web page can also show users other methods to search: by Mealtype, or Cook Time. This feature merely shows the other options, instead of actually being able to search by these methods. ( I mainly made this feature to quench my curiousity about toggling in JavaScript)
 
 ## What I learned
