@@ -62,23 +62,23 @@
                 <select id="search">
                     <option value="select">Select</option>
                     <option value="title" id="selectTitle">Title</option>
-                    <option value="cookTime">Cook Time</option>
-                    <option value="mealType">Meal Type</option>
+                    <option value="cookTime" id= 'selectCookTime'>Cook Time</option>
+                    <option value="mealType" id ='selectMealType'>Meal Type</option>
                 </select>
             </label>
-            <div class="filter-title invisible" id= 'title'>
+            <div class="filter-title invisible" id= 'title-search'>
                 <input id="filter-title" type="text" placeholder="Enter Recipe title" class="col-12 form-control">
             </div>
-            <div class="filter-cookTime col-6 invisible">
+            <div class="filter-cookTime col-6 invisible" id='cook-time-search'>
                 <select name="filter-cookTime" id="filter-cookTime" class="form-control ">
-                    <option value="under30">under 30 mins</option>
-                    <option value="under45">Under 45 mins</option>
-                    <option value="under1h">under 1 hour</option>
-                    <option value="under2h">under 2 hours</option>
+                    <option value="under30" id="u30">under 30 mins</option>
+                    <option value="under45"id='u45'>Under 45 mins</option>
+                    <option value="under1h" id="u1h">under 1 hour</option>
+                    <option value="under2h" id="u2h">under 2 hours</option>
               </select>
             </div>
             </div>
-            <div class="filter-mealType invisible">
+            <div class="filter-mealType invisible" id='meal-type-search'>
                 <select name="mealType"  class="form-control">
                     <option value="otherFilter">Other</option>
                     <option value="vegetarianFilter">Vegetarian</option>
@@ -88,7 +88,7 @@
                     <option value="dinnerFilter">Dinner</option>
                 </select>
             </div>
-            <button class="btn btn-primary col-2" type="submit">Search</button>
+            <button class="btn btn-primary col-2" id='searchBtn' type="submit">Search</button>
           </section>
           <ul id="recipe-list" class="renderedRecipes"></ul>
 </body>

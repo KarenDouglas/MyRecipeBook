@@ -1,6 +1,8 @@
 const addNewRecipe = document.getElementById('addNewRecipe');
 const showRecipe = document.getElementById('showRecipe');
 const filterSearch = document.getElementById('search');
+const searchBtn = document.getElementById('searchBtn');
+
 
 
 const recipes = [
@@ -9,7 +11,7 @@ const recipes = [
             recipeTitle: 'Sample BreakFast Recipe Title',
             mealType: 'breakFast',
             prepTime: 5,
-            cookTime: 30,
+            cookTime: 'under 30 mins',
             ingredients: ['eggs', 'bacon', 'sausage', 'spinach'],
             instructions: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi amet ipsum eaque voluptate consectetur magni, sint facere recusandae soluta architecto sit cumque in aliquid debitis quos, repellat sequi modi! Eligend',
             customTitle: ['google.com']
@@ -20,7 +22,7 @@ const recipes = [
             recipeTitle: 'Sample Dinner Recipe Title',
             mealType: 'dinner',
             prepTime: 20,
-            cookTime: 47,
+            cookTime: 'under 45 mins',
             ingredients: ['steak', 'greens', 'onions', 'spinach'],
             instructions: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi amet ipsum eaque voluptate consectetur magni, sint facere recusandae soluta architecto sit cumque in aliquid debitis quos, repellat sequi modi! Eligend',
             customTitle: ['be cool', 'stay in school', 'stuff']
@@ -31,7 +33,7 @@ const recipes = [
             recipeTitle: 'Sample Other Recipe Title',
             mealType: 'other',
             prepTime: 20,
-            cookTime: 60,
+            cookTime: 'under 1 hour',
             ingredients: ['fruit', 'vegies', 'salad', 'spinach', 'something else'],
             instructions: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi amet ipsum eaque voluptate consectetur magni, sint facere recusandae soluta architecto sit cumque in aliquid debitis quos, repellat sequi modi! Eligend',
             customTitle: 'this is custom title'
@@ -41,22 +43,27 @@ const recipes = [
 
 
 
-const renderRecipes = () => {
+const renderRecipes = (filter = '') => {
     const recipeList = document.getElementById('recipe-list');
-
+    
     
     if( recipes.length === 0 ){
         recipeList.classList.remove('visible');
         recipeList.classList.add('invisible');
+        console.log('there are zero recipes for this search')
+        
     }else {
         recipeList.classList.add('visible');
         recipeList.classList.remove('invisible');
     }
     
-
-   
+    
     recipeList.innerHTML = '';
-    recipes.forEach(recipe => {
+    
+    const filterRecipes = !filter ? recipes : recipes.filter(recipe => recipe.info.recipeTitle.includes(filter))     
+    
+    
+    filterRecipes.forEach(recipe => {
         const recipeEl = document.createElement('li');
         const ingredientsEl = document.createElement('li');
         ingredientsEl.innerHTML = '';
@@ -64,48 +71,45 @@ const renderRecipes = () => {
         const {info,... otherprops} = recipe;
         let newProp;
         for(const key in info) {
-                if (
-                    key !== 'recipeTitle' &&
+            if (
+                key !== 'recipeTitle' &&
                     key !== 'mealType' &&
                     key !== 'prepTime' &&
                     key !== 'cookTime' &&
                     key !== 'ingredients' &&
                     key !== 'instructions' &&
                     key !== 'custonInfo'
-                ){
-                    console.log(key)
-                    newProp = key;
+                    ){
+                        newProp = key;
                 }
             }
-        
-        
+            
+            
         let text = 
         `       
         <div class="card">
             <h5 class="card-header">${info.mealType}</h5>
             <div class="card-body">
-                <h5 class="card-title">${info.recipeTitle}</h5>
-                <p class="card-text"> Cook Time: ${recipe.info.cookTime}
-                </p>
-                <div id ="showRecipe">
-                <p>Ingredients: ${info.ingredients}</p>
-                <hr>
-                <p> Instructions: ${info.instructions}</p>
-                <hr>
-                <p> ${newProp} : ${info[newProp]}</p>
-                <p>
-                </div>
+            <h5 class="card-title">${info.recipeTitle}</h5>
+            <p class="card-text"> Cook Time: ${recipe.info.cookTime}
+            </p>
+            <div id ="showRecipe">
+            <p>Ingredients: ${info.ingredients}</p>
+            <hr>
+            <p> Instructions: ${info.instructions}</p>
+            <hr>
+            <p> ${newProp} : ${info[newProp]}</p>
+            <p>
             </div>
-        </div>
-        `;
-        recipeEl.innerHTML = text
-        recipeList.append(recipeEl);
-        console.log(ingredientsEl.innerHTML)
-
-        
+            </div>
+            </div>
+            `;
+            recipeEl.innerHTML = text
+            recipeList.append(recipeEl);
+            
     })
-   
-
+    
+    
 };
 
 const getFullRecipeHandler = () => {
@@ -116,7 +120,7 @@ const getFullRecipeHandler = () => {
         showRecipe.classList.add('visible');
         showRecipe.classList.remove('invisible')
     }
-
+    
 };
 
 const addNewRecipeHandler = (e) => {
@@ -129,17 +133,17 @@ const addNewRecipeHandler = (e) => {
     const instructions = document.getElementById('instructions').value;
     const customTitle = document.getElementById('customTitle').value;
     const customInfo = document.getElementById('customInfo').value;
-
+    
     if (
         recipeTitle.trim() === ''||
         mealType.trim() === ''||
         cookTime.trim() === ''||
         instructions.trim() === ''
-    ){
-        alert('must have a titee, meal type , cook time and instructions')
-        return;
+        ){
+            alert('must have a title, meal type , cook time and instructions')
+            return;
     }
-
+    
     const newRecipe = {
         info: {
             recipeTitle,
@@ -159,29 +163,43 @@ const addNewRecipeHandler = (e) => {
 };
 renderRecipes();
 
-const searchRecipeHandler = () => {
+const searchRecipeTitleHandler = () => {
     const filteredTitleValue = document.getElementById('filter-title').value;
-    
-    const filterRecipesByTitle = recipes.filter(recipe => recipe.info.recipeTitle.includes(filteredTitleValue));
+    const filteredCookTimeValue = document.getElementById('filter-cookTime').value;
+    const cookTimeU30= document.getElementById('u30').value
 
+    renderRecipes(filteredTitleValue);
+    
 }
 
-const renderTitleSearch = () => {
+const renderRecipeSearchByType = () => {
 
-    const toggleTitleSearch = document.getElementById('title');
-    const titleOption = document.getElementById('selectTitle');
+    const toggleTitleSearch = document.getElementById('title-search');
+    const toggleCookTimeSearch = document.getElementById('cook-time-search');
+    const toggleMealTypeSearch = document.getElementById('meal-type-search');
     
-    if (titleOption.value == "title") {
+    const titleOption = document.getElementById('selectTitle');
+    const cookTimeOption = document.getElementById('selectCookTime');
+    const mealTypeOption = document.getElementById('selectMealType');
+    
+    if (titleOption.selected  === true) {
         console.log('title selected');
         toggleTitleSearch.classList.add('visible')
         toggleTitleSearch.classList.remove('invisible')
-    }else{
-        console.log(' title Not selected');
+    }else if(cookTimeOption.selected == true) {
+        toggleCookTimeSearch.classList.add('visible')
+        toggleCookTimeSearch.classList.remove('invisible')
+        console.log('cook time selected');
+    }else if(mealTypeOption.selected == true){
+        toggleMealTypeSearch.classList.add('visible')
+        toggleMealTypeSearch.classList.remove('invisible')
+        console.log('meal type selected');
     }
 }
 console.log(selectTitle)
 console.log(recipes)
 
 
-filterSearch.addEventListener('change', renderTitleSearch)
+filterSearch.addEventListener('change', renderRecipeSearchByType)
 addNewRecipe.addEventListener('click', addNewRecipeHandler);
+searchBtn.addEventListener('click', searchRecipeTitleHandler);
